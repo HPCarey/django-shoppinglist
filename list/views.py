@@ -15,4 +15,4 @@ def list(request, id):
     context = {
         'list': list
     }
-    return render(request, 'list,html', context)
+    return render(request, 'list.html', context)

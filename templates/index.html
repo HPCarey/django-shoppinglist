@@ -1,13 +1,17 @@
 {% extends "base.html" %}
 
 {% block content %}
+
 <h1>My Shopping Lists</h1>
 <div class="row">
     {% if lists %}
     {% for list in lists %}
     <div class="col-md-3">
         <div class="card m-2 col-m-2 card-body">
-            {{list.name}}
+           <p class="card-text">{{list.name}}</p> 
+           <a href="/list_items/{{ list.id }}" class="btn btn-primary">View Items</a>
+           <!-- select and delete reservation via use of primary key -->
+           <a href="/delete_list/{{ list.id }}" class="btn btn-danger">Delete List</a>
         </div>
     </div>
     {% endfor %}
@@ -15,4 +19,4 @@
     <p>No Lists</p>
     {% endif %}
 </div>
-{%endblock%}
+{% endblock %}

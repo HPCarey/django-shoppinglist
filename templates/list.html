@@ -1,1 +1,16 @@
-{}
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="col-md-5">
+        <div class="card card-body">
+            <h1>{{ list.name }}</h1> 
+            {% if list.items.all %}
+                {% for item in list.items.all %}
+                    <p>{{ item.name }} - {{ item.done }}</p>
+                {% endfor %}
+            {% else %}
+                <p>No Items yet</p>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
