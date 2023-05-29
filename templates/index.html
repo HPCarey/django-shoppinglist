@@ -1,6 +1,18 @@
 {% extends "base.html" %}
 
 {% block content %}
-
-
+<h1>My Shopping Lists</h1>
+<div class="row">
+    {% if lists %}
+    {% for list in lists %}
+    <div class="col-md-3">
+        <div class="card m-2 col-m-2 card-body">
+            {{list.name}}
+        </div>
+    </div>
+    {% endfor %}
+    {% else %}
+    <p>No Lists</p>
+    {% endif %}
+</div>
 {%endblock%}
