@@ -38,6 +38,12 @@ def list(request, id):
     return render(request, 'list.html', context)
 
 
+def deleteList(request, id):
+    list = List.objects.get(id=id)
+    list.delete()
+    return redirect('index')
+
+
 def deleteItem(request, id):
     item = Item.objects.get(id=id)
     list = item.list

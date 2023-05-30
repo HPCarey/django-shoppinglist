@@ -1,25 +1,25 @@
 {% extends "base.html" %} {% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-4">
+    <h1 class="text-center">My Shopping Lists</h1>
+  </div>
+</div>
 <div class="row">
   <div class="col-md-4">
-    <h1>My Shopping Lists</h1>
-  </div>
-  <div class="row">
-    <div class="col-md-4">
-      <div class="card card-body">
-        <h2>Create a Shoppinglist</h2>
-        <form action="" method="post">
-          {% csrf_token %}
-          <label>Name your shoppinglist</label>
-          <input
-            type="text"
-            name="name"
-            id="id_name"
-            class="form-control"
-            placeholder="My Shoppinglist"
-          />
-          <button type="submit" class="btn btn-success btn-lg">Create</button>
-        </form>
-      </div>
+    <div class="card card-body">
+      <h2 class="text-center">Create a Shoppinglist</h2>
+      <form action="" method="post">
+        {% csrf_token %}
+        <label>Name your shoppinglist</label>
+        <input
+          type="text"
+          name="name"
+          id="id_name"
+          class="form-control"
+          placeholder="My Shoppinglist"
+        />
+        <button type="submit" class="btn btn-success btn-lg mt-3">Create</button>
+      </form>
     </div>
   </div>
 </div>
@@ -28,11 +28,10 @@
   <div class="col-md-3">
     <div class="card m-2 col-m-2 card-body">
       <p class="card-text">{{list.name}}</p>
-      <a href="{% url 'list' list.id %}" class="btn btn-primary">View Items</a>
-      <!-- select and delete reservation via use of primary key -->
-      <a href="/delete_list/{{ list.id }}" class="btn btn-danger"
-        >Delete List</a
-      >
+      <div class="d-flex justify-content-between">
+        <a href="{% url 'list' list.id %}" class="btn btn-primary">View Items</a>
+        <a href="{% url 'delete_list' id=list.id %}" class="btn btn-danger ml-2">Delete List</a>
+      </div>
     </div>
   </div>
   {% endfor %} {% else %}
