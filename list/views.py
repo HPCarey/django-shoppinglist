@@ -43,3 +43,11 @@ def deleteItem(request, id):
     list = item.list
     item.delete()
     return redirect('list', id=list.id)
+
+
+def completeItem(request, id):
+    item = Item.objects.get(id=id)
+    list = item.list
+    item.done = not item.done
+    item.save()
+    return redirect('list', id=list.id)
