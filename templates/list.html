@@ -31,7 +31,17 @@
             <h1>{{ list.name }}</h1> 
             {% if list.items.all %}
                 {% for item in list.items.all %}
-                    <p>{{ item.name }}</p>
+                <div class="row">
+                    <div class="col-md-6">
+                        <p>{{ item.name }}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <a href="{% url 'delete_item' id=item.id %}" class="btn btn-danger btn-sm">Delete</a>
+                        <a href="#" class="btn btn-primary btn-sm">Update</a>
+
+                    </div>
+                </div>
+                    
                 {% endfor %}
             {% else %}
                 <p>No Items yet</p>

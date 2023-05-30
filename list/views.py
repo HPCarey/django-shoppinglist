@@ -36,3 +36,10 @@ def list(request, id):
         'form': form
     }
     return render(request, 'list.html', context)
+
+
+def deleteItem(request, id):
+    item = Item.objects.get(id=id)
+    list = item.list
+    item.delete()
+    return redirect('list', id=list.id)
