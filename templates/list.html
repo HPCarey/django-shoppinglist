@@ -1,19 +1,37 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>{{ list.name }}</h1>
-
-<form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Add Item</button>
-</form>
+<div class="row">
+    <div class="col-md-4">
+      <h1>{{list.name}}</h1>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card card-body">
+          <h2>Add items to this list</h2>
+          <form action="" method="post">
+            {% csrf_token %}
+            <label>Item</label>
+            <input
+              type="text"
+              name="name"
+              id="id_name"
+              class="form-control"
+              placeholder=""
+            />
+            <button type="submit" class="btn btn-success btn-lg">Create</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+<h2>{{ list.name }}</h2>
     <div class="col-md-5">
         <div class="card card-body">
             <h1>{{ list.name }}</h1> 
             {% if list.items.all %}
                 {% for item in list.items.all %}
-                    <p>{{ item.name }} - {{ item.done }}</p>
+                    <p>{{ item.name }}</p>
                 {% endfor %}
             {% else %}
                 <p>No Items yet</p>

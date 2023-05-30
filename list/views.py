@@ -21,13 +21,16 @@ def index(request):
 
 def list(request, id):
     list = List.objects.get(id=id)
-    form = ListForm(request.POST)
+
     if request.method == 'POST':
+        form = ItemForm(request.POST)
         if form.is_valid():
             item = form.save(commit=False)
             item.list = list
             item.save()
             return redirect('list', id=id)
+    else:
+        form = ItemForm()
     context = {
         'list': list,
         'form': form
