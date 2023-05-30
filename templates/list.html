@@ -1,6 +1,13 @@
 {% extends "base.html" %}
 
 {% block content %}
+<h1>{{ list.name }}</h1>
+
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Add Item</button>
+</form>
     <div class="col-md-5">
         <div class="card card-body">
             <h1>{{ list.name }}</h1> 

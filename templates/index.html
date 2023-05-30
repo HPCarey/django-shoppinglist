@@ -1,22 +1,42 @@
-{% extends "base.html" %}
-
-{% block content %}
-
-<h1>My Shopping Lists</h1>
+{% extends "base.html" %} {% block content %}
 <div class="row">
-    {% if lists %}
-    {% for list in lists %}
-    <div class="col-md-3">
-        <div class="card m-2 col-m-2 card-body">
-           <p class="card-text">{{list.name}}</p> 
-           <a href="/list_items/{{ list.id }}" class="btn btn-primary">View Items</a>
-           <!-- select and delete reservation via use of primary key -->
-           <a href="/delete_list/{{ list.id }}" class="btn btn-danger">Delete List</a>
-        </div>
+  <div class="col-md-4">
+    <h1>My Shopping Lists</h1>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card card-body">
+        <h2>Create a Shoppinglist</h2>
+        <form action="" method="post">
+          {% csrf_token %}
+          <label>Name your shoppinglist</label>
+          <input
+            type="text"
+            name="name"
+            id="id_name"
+            class="form-control"
+            placeholder="My Shoppinglist"
+          />
+          <button type="submit" class="btn btn-success btn-lg">Create</button>
+        </form>
+      </div>
     </div>
-    {% endfor %}
-    {% else %}
-    <p>No Lists</p>
-    {% endif %}
+  </div>
+</div>
+<div class="row">
+  {% if lists %} {% for list in lists %}
+  <div class="col-md-3">
+    <div class="card m-2 col-m-2 card-body">
+      <p class="card-text">{{list.name}}</p>
+      <a href="{% url 'list' list.id %}" class="btn btn-primary">View Items</a>
+      <!-- select and delete reservation via use of primary key -->
+      <a href="/delete_list/{{ list.id }}" class="btn btn-danger"
+        >Delete List</a
+      >
+    </div>
+  </div>
+  {% endfor %} {% else %}
+  <p>No Lists</p>
+  {% endif %}
 </div>
 {% endblock %}
